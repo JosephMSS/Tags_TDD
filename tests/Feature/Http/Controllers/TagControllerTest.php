@@ -17,20 +17,24 @@ class TagControllerTest extends TestCase
     use RefreshDatabase;
     public function test_store_tag()
     {
-         $this
-        ->post('tags',['name'=>'PHP'])
-        ->assertRedirect('/');
-        $this->assertDatabaseHas('tags',['name'=>'PHP']);
-
+        $this
+            ->post('tags', ['name' => 'PHP'])
+            ->assertRedirect('/');
+        $this->assertDatabaseHas('tags', ['name' => 'PHP']);
     }
     public function test_destroy()
     {
-        $tag=Tag::factory()->create();
+        $tag = Tag::factory()->create();
         $this
-        ->delete("tags/{$tag->id}")
-        ->assertRedirect('/');
+            ->delete("tags/{$tag->id}")
+            ->assertRedirect('/');
         // dd($tag->name);
-        $this->assertDatabaseMissing('tags',['name'=>$tag->name]);
-        
+        $this->assertDatabaseMissing('tags', ['name' => $tag->name]);
+    }
+    public function test_validate()
+    {
+        $this
+            ->post('tags', ['name' => ''])
+            ->assertSessionHasErrors('name');
     }
 }
