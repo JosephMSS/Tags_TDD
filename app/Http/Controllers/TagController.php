@@ -17,5 +17,5 @@ class TagController extends Controller
         $tag->delete();
         return back();
     }
-    
+        
 }

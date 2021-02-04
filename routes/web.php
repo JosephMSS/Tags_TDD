@@ -21,5 +21,5 @@ Route::get('/', function () {
         'tags'=>Tag::get()
     ]);
 });
-Route::post('tags', [TagController::class,'store']);
+Route::post('tags', [TagController::class,'store'])->name('store');
 Route::delete('tags/{tag}', [TagController::class,'destroy']);
