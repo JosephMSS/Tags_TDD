@@ -12,4 +12,11 @@ class TagController extends Controller
         Tag::create($request->all());
         return redirect('/');
     }
+    public function destroy(Tag $tag)
+    { 
+        // dd($tag->id);
+        $tag->delete();
+        return back();
+    }
+    
 }
